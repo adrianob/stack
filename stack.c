@@ -11,7 +11,7 @@ bool is_empty(STACK_T *head){
 }
 
 void * top(STACK_T *head){
-  return head->data;
+  return (head) ? head->data : NULL;
 }
 
 void * pop(STACK_T **head_ref){
