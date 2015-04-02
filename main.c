@@ -3,17 +3,17 @@
 #include <stdlib.h>
 #include "stack.h"
 
-void random_list(LIST_NODE **head_ref, int size);
+void random_list(STACK_T **head_ref, int size);
 bool produto_iterator(void *data);
 void menu(void);
-struct produto * le_produto(LIST_NODE **head);
+struct produto * le_produto(STACK_T **head);
 
 struct produto{
   int codigo;
   float preco;
 };
 
-void random_list(LIST_NODE **head_ref, int size){
+void random_list(STACK_T **head_ref, int size){
   int i;
   struct produto *prod;
   for (i = 0; i < size; i++) {
@@ -43,7 +43,7 @@ void menu(void){
   printf("8. sair\n");
 }
 
-struct produto * le_produto(LIST_NODE **head){
+struct produto * le_produto(STACK_T **head){
   struct produto *prod;
   prod = (struct produto *)malloc(sizeof(struct produto));
   printf("Informe o codigo:\n");
@@ -60,7 +60,7 @@ int main(void)
   struct produto * prod;
   iterator iterator;
 
-  LIST_NODE *produtos = initialize();
+  STACK_T *produtos = initialize();
   iterator = produto_iterator;
   menu();
 

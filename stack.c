@@ -2,45 +2,45 @@
 #include <stdio.h>
 #include "stack.h"
 
-LIST_NODE * initialize(void){
+STACK_T * initialize(void){
   return NULL;
 }
 
-bool is_empty(LIST_NODE *head){
+bool is_empty(STACK_T *head){
   return head == NULL;
 }
 
-void * top(LIST_NODE *head){
+void * top(STACK_T *head){
   return head->data;
 }
 
-void * pop(LIST_NODE **head_ref){
-  LIST_NODE *node = *head_ref;
+void * pop(STACK_T **head_ref){
+  STACK_T *node = *head_ref;
   if (!is_empty(node)) {
     *head_ref = node->next;
   }
   return (node) ? node->data : NULL;
 }
 
-void push(LIST_NODE **head_ref, void *element){
-  LIST_NODE *node = (LIST_NODE *) malloc(sizeof(LIST_NODE));
+void push(STACK_T **head_ref, void *element){
+  STACK_T *node = (STACK_T *) malloc(sizeof(STACK_T));
   node->data = element;
   node->next = *head_ref;
 
   *head_ref = node;
 }
 
-void for_each(LIST_NODE **head_ref, iterator iterator){
-  LIST_NODE **node = head_ref;
+void for_each(STACK_T **head_ref, iterator iterator){
+  STACK_T **node = head_ref;
   while(!is_empty(*node)){
     iterator((*node)->data);
     pop(node);
   }
 }
 
-void destroy(LIST_NODE **head_ref){
-  LIST_NODE *current = *head_ref;
-  LIST_NODE *next;
+void destroy(STACK_T **head_ref){
+  STACK_T *current = *head_ref;
+  STACK_T *next;
 
   while(current){
     next = current->next;
@@ -51,9 +51,9 @@ void destroy(LIST_NODE **head_ref){
   *head_ref = NULL;
 }
 
-int list_size(LIST_NODE *head){
+int list_size(STACK_T *head){
   unsigned int i = 0;
-  LIST_NODE *node = head;
+  STACK_T *node = head;
   while(node){
     i++;
     node = node->next;
